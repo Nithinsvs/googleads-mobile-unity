@@ -77,12 +77,6 @@ namespace GoogleMobileAds.Android
             this.interstitial.Call("destroy");
         }
 
-        // Returns the mediation adapter class name.
-        public string MediationAdapterClassName()
-        {
-            return this.interstitial.Call<string>("getMediationAdapterClassName");
-        }
-
         // Returns ad request response info
         public IResponseInfoClient GetResponseInfoClient()
         {
@@ -108,8 +102,7 @@ namespace GoogleMobileAds.Android
             {
                 LoadAdErrorClientEventArgs args = new LoadAdErrorClientEventArgs()
                 {
-                    LoadAdErrorClient = new LoadAdErrorClient(error),
-                    Message = error.Call<string>("getMessage")
+                    LoadAdErrorClient = new LoadAdErrorClient(error)
                 };
                 this.OnAdFailedToLoad(this, args);
             }

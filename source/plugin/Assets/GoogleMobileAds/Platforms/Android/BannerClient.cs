@@ -109,12 +109,6 @@ namespace GoogleMobileAds.Android
             this.bannerView.Call("setPosition", x, y);
         }
 
-        // Returns the mediation adapter class name.
-        public string MediationAdapterClassName()
-        {
-            return this.bannerView.Call<string>("getMediationAdapterClassName");
-        }
-
         public IResponseInfoClient GetResponseInfoClient()
         {
 
@@ -137,8 +131,7 @@ namespace GoogleMobileAds.Android
             {
                 LoadAdErrorClientEventArgs args = new LoadAdErrorClientEventArgs()
                 {
-                    LoadAdErrorClient = new LoadAdErrorClient(error),
-                    Message = error.Call<string>("getMessage")
+                    LoadAdErrorClient = new LoadAdErrorClient(error)
                 };
                 this.OnAdFailedToLoad(this, args);
             }

@@ -6,6 +6,10 @@
 @property UILayoutGuide *safeAreaLayoutGuide;
 @end
 
+@interface NSObject (unityStub) <UIApplicationDelegate>
+@property UIViewController *rootViewController;
+@end
+
 BOOL GADUIsOperatingSystemAtLeastVersion(NSInteger majorVersion) {
   NSProcessInfo *processInfo = NSProcessInfo.processInfo;
   if ([processInfo respondsToSelector:@selector(isOperatingSystemAtLeastVersion:)]) {
@@ -57,9 +61,9 @@ static BOOL _pauseOnBackground = NO;
 }
 
 + (UIViewController *)unityGLViewController {
-  id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
+  NSObject<UIApplicationDelegate> *appDelegate = UIApplication.sharedApplication.delegate;
   if ([appDelegate respondsToSelector:@selector(rootViewController)]) {
-    return [[UIApplication sharedApplication].delegate rootViewController];
+    return [appDelegate rootViewController];
   }
   return nil;
 }
